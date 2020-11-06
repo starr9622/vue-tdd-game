@@ -1,18 +1,23 @@
 <template>
   <ul>
-    <li v-for="(index, card) in cards" :key="index" @click="clickCard(card)">
-      {{ card }}
+    <li
+      v-for="(card, index) in cards"
+      :key="index"
+      @click="clickCard({ index })"
+    >
+      {{ card.select ? card.value : 0 }}
     </li>
   </ul>
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
+import { mapActions, mapState } from "vuex";
 export default {
-  computed: mapGetters({
-    cards: "shuffle"
-  }),
-  methods: mapActions("clickCard")
+  computed: mapState(["cards"]),
+  mounted() {
+    this.$store.commit("CARD_INSERT", [1, 2, 3, 4]);
+  },
+  methods: mapActions(["clickCard"])
 };
 </script>
 

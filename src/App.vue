@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import card from "../src/components/card";
+import card from "./components/card";
 export default {
   name: "App",
   components: {
