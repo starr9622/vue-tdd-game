@@ -28,9 +28,9 @@ describe("card component 확인", () => {
     const wrapper = shallowMount(Card, { store });
     const selectIndex = 0;
     const li = wrapper.findAll("li").at(selectIndex);
-    li.trigger("click");
+    li.find("div").trigger("click");
     wrapper.vm.$nextTick(() => {
-      expect(li.text()).not.toContain(0);
+      expect(li.find("div").text()).not.toBeNull();
       expect(store.state.cards[selectIndex].select).toBe(true);
       expect(store.state.cards[selectIndex].matched).toBe(false);
     });
@@ -42,7 +42,7 @@ describe("card component 확인", () => {
       e => store.state.cards[0].value === e.value && !e.select
     );
     const li = wrapper.findAll("li").at(selectIndex);
-    li.trigger("click");
+    li.find("div").trigger("click");
     wrapper.vm.$nextTick(() => {
       expect(store.state.cards[selectIndex].matched).toBeTruthy();
       expect(store.state.select).toBeNull();
@@ -55,10 +55,12 @@ describe("card component 확인", () => {
       e => store.state.cards[0].value !== e.value && !e.select
     );
     const li = wrapper.findAll("li").at(selectIndex);
-    li.trigger("click");
+    li.find("div").trigger("click");
     wrapper.vm.$nextTick(() => {
-      expect(store.state.cards[selectIndex].matched).not.toBeTruthy();
-      expect(store.state.select).toBeNull();
+      setTimeout(() => {
+        expect(store.state.cards[selectIndex].matched).not.toBeTruthy();
+        expect(store.state.select).toBeNull();
+      }, 300);
     });
   });
 });

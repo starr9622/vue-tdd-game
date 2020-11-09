@@ -18,6 +18,11 @@ export default {
 </script>
 
 <style lang="scss">
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -28,7 +33,8 @@ export default {
 }
 
 .cardWrap {
-  width: 50%;
-  margin: auto;
+  width: 100%;
+  max-width: 40rem;
+  margin: 10% auto;
 }
 </style>
