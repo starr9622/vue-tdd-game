@@ -1,4 +1,5 @@
 export default {
   cards: [],
-  select: null
+  select: null,
+  count: 0
 };

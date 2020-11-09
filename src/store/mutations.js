@@ -1,14 +1,21 @@
 export default {
   SELECT(state, index) {
+    if (state.select !== null) state.cards[state.select].select = false;
     state.select = index;
+    state.cards[state.select].select = true;
+  },
+  SELECT_VACATE(state, index) {
     state.cards[index].select = true;
+    setTimeout(() => {
+      state.cards[index].select = false;
+      state.cards[state.select].select = false;
+      state.select = null;
+    }, 300);
   },
-  SELECT_VACATE(state) {
+  MATCHED_CARD(state, index) {
     state.cards[state.select].select = false;
-    state.select = null;
-  },
-  EQUAL_CARD(state, index) {
-    state.cards[index].select = false;
+    state.cards[state.select].matched = true;
+    state.cards[index].matched = true;
     state.select = null;
   },
   SHUFFLE(state) {
@@ -24,7 +31,8 @@ export default {
     items.map(item => {
       state.cards.push({
         value: item,
-        select: false
+        select: false,
+        matched: false
       });
     });
   }

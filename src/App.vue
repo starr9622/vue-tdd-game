@@ -1,5 +1,7 @@
 <template>
-  <card></card>
+  <div class="cardWrap">
+    <card></card>
+  </div>
 </template>
 
 <script>
@@ -8,6 +10,9 @@ export default {
   name: "App",
   components: {
     card
+  },
+  mounted() {
+    this.$store.dispatch("startGame", 8);
   }
 };
 </script>
@@ -20,5 +25,10 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+.cardWrap {
+  width: 50%;
+  margin: auto;
 }
 </style>
